@@ -1,15 +1,15 @@
 import React from 'react'
 import './content.css'
 
-function Footer (){
-return (
-    <div>
-<footer class="container-fluid">
-  <p>Contact:Naukri.com</p>
-</footer>
+function Footer() {
+    return (
+        <div>
+            <footer className="container-fluid">
+                <p>Contact us at:Naukri.com</p>
+            </footer>
 
-    </div>
-)
+        </div>
+    )
 
 }
 export default Footer
