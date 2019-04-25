@@ -1,0 +1,70 @@
+.maincontainer {
+    padding-bottom: 35px;
+    position: relative;
+    overflow: hidden;
+}
+.card {
+    position: relative;
+    overflow: hidden;
+    height: auto;
+    line-height: 1;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    text-align: center;
+    background-color: #f1f1f1;
+    /* margin-bottom: 10px; */
+
+}
+
+footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+  }
+.card-body {
+    padding-top: 8px;
+    position: relative;
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+}
+
+/* * {
+    box-sizing: border-box;
+  } */
+  
+  /* body {
+    font-family: Arial, Helvetica, sans-serif;
+  } */
+  
+  /* Float four columns side by side */
+  /* .column {
+    float: left;
+    width: 25%;
+    padding: 0 10px;
+  } */
+  
+  /* Remove extra left and right margins, due to padding */
+  /* .row {margin: 0 -5px;} */
+  
+  /* Clear floats after the columns */
+  /* .row:after {
+    content: "";
+    display: table;
+    clear: both;
+  } */
+  
+  /* Responsive columns */
+  /* @media screen and (max-width: 600px) {
+    .column {
+      width: 100%;
+      display: block;
+      margin-bottom: 20px;
+    }
+  } */
+  
+  /* Style the counter cards */
+  /* .card {
+    box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2);
+    padding: 16px;
+    text-align: center;
+    background-color: #f1f1f1;
+  } */
