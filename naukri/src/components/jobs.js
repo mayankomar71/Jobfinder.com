@@ -8,9 +8,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1143,
-        "job_description" :"React and Node Developer",
+        "job_designation" :"React and Node Developer",
         "company_name" : "Kelltontech",
-        'salary':7.5 
+        'salary':7.5,
+        "city":"Gurgaon"
     },
     {
         "loc" : {
@@ -21,9 +22,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1158,
-        "job_description" : "React native developer",
+        "job_designation" : "React native developer",
         "company_name" : "Google",
-        'salary':10 
+        'salary':10 ,
+        "city":"Delhi"
     },
     {
         "loc" : {
@@ -34,9 +36,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1159,
-        "job_description" : "Web developer",
+        "job_designation" : "Web developer",
         "company_name" : "Kellton tech",
-        'salary':5.75
+        'salary':5.75,
+        "city":"Gurgaon"
     },
     {
         "loc" : {
@@ -47,9 +50,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1160,
-        "job_description" : "Java Developer ",
+        "job_designation" : "Java Developer ",
         "company_name" : "Microsoft",
-        'salary':8
+        'salary':8,
+        "city":"Delhi"
     },
     {
         "loc" : {
@@ -60,9 +64,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1161,
-        "job_description" : "Spring Developer",
+        "job_designation" : "Spring Developer",
         "company_name" : "Microsoft",
-        'salary':12
+        'salary':12,
+        "city":"Noida"
     },
     {
         "loc" : {
@@ -73,9 +78,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1162,
-        "job_description" : ".Net Developer",
+        "job_designation" : ".Net Developer",
         "company_name" : "Google",
-        'salary':12.5
+        'salary':12.5,
+        "city":"Noida"
     },
     {
         "loc" : {
@@ -86,9 +92,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1163,
-        "job_description" : "Angular Developer",
+        "job_designation" : "Angular Developer",
         "company_name" : "MakeMytrip",
-        'salary':7.5
+        'salary':7.5,
+        "city":"Banglore"
     },
     {
         "loc" : {
@@ -99,9 +106,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1164,
-        "job_description" : "Angular Developer",
+        "job_designation" : "Angular Developer",
         "company_name" : "Sapient",
-        'salary':4.5 
+        'salary':4.5 ,
+        "city":"Banglore"
     },
     {
         "loc" : {
@@ -112,9 +120,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1165,
-        "job_description" : "Mongo and node Developer",
+        "job_designation" : "Mongo and node Developer",
         "company_name" : "Microsoft",
-        'salary':7.5 
+        'salary':7.5 ,
+        "city":"Gurgaon"
     },
     {
         "loc" : {
@@ -125,9 +134,10 @@ const jobs=[
             "type" : "Point"
         },
         "job_id" : 1166,
-        "job_description" : "React Native Developer",
+        "job_designation" : "React Native Developer",
         "company_name" : "Microsoft",
-        'salary':15
+        'salary':15,
+        "city":"Banglore"
     }
 
 
