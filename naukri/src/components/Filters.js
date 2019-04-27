@@ -11,54 +11,35 @@ class Filters extends Component {
             company: ''
 
         }
-      
+
     }
-    handleChange=(event) =>{
-        this.setState({ [event.target.name]: event.target.value});
+    handleChange = (event) => {
+        this.setState({ [event.target.name]: event.target.value });
     }
-    handleSubmit = (event) => {
-   
+    submitData = (event) => {
+
         event.preventDefault();
-        
-        const job_data = this.props.data_filter;
-        if (this.state.location==='' && this.state.designation==='' && this.state.company==='') {
-            var data=job_data.map((element)=>{
-                return element;
-            });
+
+        const job_data = this.props.jobData;
+        if (this.state.location === '' && this.state.designation === '' && this.state.company === '') {
+            var data = job_data;
         }
         else {
-            data=(job_data.filter((element) => {
-                if (element['city'] === this.state.location && element.job_designation === this.state.designation && element.company_name === this.state.company) {
-                    return true;
+            data = (job_data.filter((element) => {
+                if (this.state.location && element.city !== this.state.location) {
+                    return false;
                 }
-                else if (element.city === this.state.location && element.job_designation === this.state.designation && this.state.company === '') {
-                    return true;
+                if (this.state.designation && element.job_designation !== this.state.designation) {
+                    return false;
                 }
-                else if (this.state.location === '' && element.job_designation === this.state.designation && element.company_name === this.state.company) {
-                    return true;
+                if (this.state.company && element.company_name !== this.state.company) {
+                    return false;
                 }
-                else if (element.city === this.state.location && this.state.designation === '' && element.company_name === this.state.company) {
-                    return true;
-                }
-                else if (element['city'] === this.state.location && this.state.designation === '' && this.state.company==='') {
-                    return true;
-                }
-                else if (this.state.location==='' && element.job_designation===this.state.designation && this.state.company==='') {
-                    return true;
-                }
-                else if (this.state.location==='' && this.state.designation === '' && element.company_name === this.state.company) {
-                    return true;
-
-                }
-                else{
-                    return false
-                }
-                
-                
+                return true;
             }));
 
         }
-       
+
         this.props.Mydata(data);
     }
 
@@ -72,7 +53,7 @@ class Filters extends Component {
 
             <section style={divstyle} className="search-sec">
                 <div className="container">
-                    <form onSubmit={this.handleSubmit} method="post" >
+                    <form onSubmit={this.submitData} method="post" >
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="row">

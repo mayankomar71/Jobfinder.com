@@ -31,7 +31,7 @@ filterdata = (filterarray) => {
      
       <Header></Header>
      
-      <Filters Mydata={this.filterdata} data_filter={jobs}></Filters>
+      <Filters Mydata={this.filterdata} jobData={jobs}></Filters>
       <Content data={this.state.arr}></Content>
       <Footer></Footer>
   
