@@ -1,5 +1,6 @@
 import React from 'react'
 import '../Header.css';
+import {Link} from 'react-router-dom'
 
 function header() {
     return (
@@ -18,8 +19,8 @@ function header() {
                         <ul className="nav navbar-nav">
                             <li><a href="https://www.naukri.com/">Home</a></li>
                             <li><a href="https://www.naukri.com/">About Us</a></li>
-                            <li><a href="https://www.naukri.com/" ><span className="glyphicon glyphicon-log-in" ></span> Login</a></li>
-                            <li><a href="https://www.naukri.com/"><span className="glyphicon glyphicon-log-out"></span> Log Out</a></li>
+                            <li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>
+                            <li><Link to="/signup">Sign Up</Link></li>
                         </ul>
 
                     </div>
