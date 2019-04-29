@@ -2,6 +2,7 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
+import axios from 'axios'
 
 class Login extends React.Component {
     constructor(props) {
@@ -59,7 +60,30 @@ class Login extends React.Component {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid  });
 
     }
-
+    handleFormSubmit=(event)=>
+    {
+        event.preventDefault();
+        const{email,password}=this.state;
+       
+        axios.get(`http://localhost:4000/getuser`, {
+            params: {
+              useremail: email,
+              userpassword:password
+            }
+          })
+          .then( (response)=> {
+              console.log(response.data)
+            this.props.history.push('/')
+            console.log('Successfully Logged In');
+            localStorage.setItem('Currentuser',JSON.stringify(response.data["name"]))
+            localStorage.setItem('isLoggedIn',true)
+           
+          })
+          .catch(function (error) {
+            console.log(error);
+          });
+        
+    }
   
        
     render() {
@@ -86,7 +110,7 @@ class Login extends React.Component {
                     />
                     <Button
                         action={this.handleFormSubmit}
-                        type={'primary'}
+                        type={'submit'}
                         title={'Submit'}
                     />
 

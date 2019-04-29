@@ -20,7 +20,7 @@ function header() {
                             <li><a href="https://www.naukri.com/">Home</a></li>
                             <li><a href="https://www.naukri.com/">About Us</a></li>
                             <li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>
-                            <li><Link to="/signup">Sign Up</Link></li>
+                         
                         </ul>
 
                     </div>

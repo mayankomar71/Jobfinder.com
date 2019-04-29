@@ -2,6 +2,7 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
+import axios from 'axios'
 
 class Signup extends React.Component {
     constructor(props) {
@@ -27,6 +28,7 @@ class Signup extends React.Component {
         const name = e.target.name;
         this.setState({ [name]: value },
             () => { this.validateField(name, value) });
+
     }
 
 
@@ -70,7 +72,29 @@ class Signup extends React.Component {
     }
     validateForm() {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid && this.state.nameValid && this.state.phoneValid });
+        console.log(this.state.formValid)
+    }
+    handleFormSubmit = (event) => {
+        event.preventDefault();
+       const{name,password,email,mobile}=this.state;
+       const role="user"
+       axios.post('http://localhost:4000/user',{name,password,email,mobile,role})
+       .then((response) => {
+        this.props.history.push('/login')
+        console.log('Successfully added user');
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+      this.setState({
+        name:'',
+        password:'',
+        email:'',
+        role:'',
+        mobile:''
 
+
+    })
     }
 
 
@@ -112,8 +136,8 @@ class Signup extends React.Component {
                         handleChange={this.handleInput}
                     />
                     <Button
-                        action={this.handleFormSubmit}
-                        type={'primary'}
+                    // btn_disable={!this.state.formValid}
+                        type={'submit'}
                         title={'Submit'}
                     />
 

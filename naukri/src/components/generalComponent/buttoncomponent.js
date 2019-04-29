@@ -5,6 +5,7 @@ const Button = (props) => {
 	return(
 	<button 
 		style= {props.style} 
+		// disabled ={props.btn_disable}
 		className ="btn btn-success"
 		onClick= {props.action} > 
 		{props.title} 

@@ -10,8 +10,13 @@ class HomeComponent extends Component{
     super(props)
   
     this.state = {
-    arr:jobs
+    arr:jobs,
+    isLoggedIn:localStorage.getItem('isLoggedIn'),
+    currentUser:localStorage.getItem('Currentuser')
     }
+    // localStorage.getItem('isLoggedIn')===true&&this.props.history.push('/')
+
+
   }
  
   
@@ -22,6 +27,15 @@ filterdata = (filterarray) => {
 
   
  }
+ logOut=()=>
+ {
+   this.setState({
+    isLoggedIn:false,
+    currentUser:""
+
+   })
+
+ }
 
   render()
   {
@@ -29,7 +43,12 @@ filterdata = (filterarray) => {
       <div className="App">
       
      
+      
       <Header></Header>
+      {
+      (this.state.isLoggedIn)&&this.state.currentUser
+      }
+      <button onClick={this.logOut}>LogOut</button>
       <Filters Mydata={this.filterdata} jobData={jobs}></Filters>
       <Content data={this.state.arr}></Content>
       <Footer></Footer>

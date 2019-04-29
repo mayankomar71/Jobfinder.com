@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import './App.css';
 import { BrowserRouter } from "react-router-dom";
-import Router from "./Routing";
+import Routes from "./AppRouting"
 class App extends Component {
   render() {
     return (
@@ -9,7 +9,7 @@ class App extends Component {
 
 
         <BrowserRouter>
-          <Router />
+          <Routes />
         </BrowserRouter>
 
 
