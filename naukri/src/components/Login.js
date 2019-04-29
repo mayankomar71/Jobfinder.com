@@ -13,7 +13,7 @@ class Login extends React.Component {
             password: '',
             name: '',
             mobile: '',
-            formErrors: {  email: '', password: '' },
+            formErrors: { email: '', password: '' },
             emailValid: false,
             passwordValid: false,
             formValid: false
@@ -44,7 +44,7 @@ class Login extends React.Component {
 
                 fieldValidationErrors.password = passwordValid ? '' : 'is not valid';
                 break;
-           
+
             default:
                 break;
         }
@@ -57,41 +57,41 @@ class Login extends React.Component {
         }, this.validateForm);
     }
     validateForm() {
-        this.setState({ formValid: this.state.emailValid && this.state.passwordValid  });
+        this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
 
     }
-    handleFormSubmit=(event)=>
-    {
+    handleFormSubmit = (event) => {
         event.preventDefault();
-        const{email,password}=this.state;
-       
+        const { email, password } = this.state;
+
         axios.get(`http://localhost:4000/getuser`, {
             params: {
-              useremail: email,
-              userpassword:password
+                useremail: email,
+                userpassword: password
             }
-          })
-          .then( (response)=> {
-              console.log(response.data)
-            this.props.history.push('/')
-            console.log('Successfully Logged In');
-            localStorage.setItem('Currentuser',JSON.stringify(response.data["name"]))
-            localStorage.setItem('isLoggedIn',true)
-           
-          })
-          .catch(function (error) {
-            console.log(error);
-          });
-        
+        })
+            .then((response) => {
+
+                console.log(response.data)
+                this.props.history.push('/')
+                console.log('Successfully Logged In');
+                localStorage.setItem('Currentuser', JSON.stringify(response.data["name"]))
+                localStorage.setItem('isLoggedIn', true)
+
+            })
+            .catch(function (error) {
+                console.log(error);
+            });
+
     }
-  
-       
+
+
     render() {
         return (
             <div>
                 <form className="form-group" onSubmit={this.handleFormSubmit}>
                     <div className="default">
-                    <FormErrors formErrors={this.state.formErrors} />
+                        <FormErrors formErrors={this.state.formErrors} />
                     </div>
                     <h2 id='heading'><u>Log In</u></h2>
                     <Input input_type={'text'}

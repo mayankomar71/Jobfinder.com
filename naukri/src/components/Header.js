@@ -2,8 +2,26 @@ import React from 'react'
 import '../Header.css';
 import {Link} from 'react-router-dom'
 
-function header() {
+class Header extends React.Component {
+    constructor(props) {
+      super(props)
+    
+      this.state = {
+         currentstate:false
+      }
+    }
+    
+    logout=()=>
+    {
+        localStorage.removeItem('Currentuser');
+        localStorage.setItem('isLoggedIn',false)
+    }
+    render()
+    {
+
     return (
+
+        
        
         <div>
             <nav className="navbar navbar-inverse background">
@@ -20,7 +38,8 @@ function header() {
                             <li><a href="https://www.naukri.com/">Home</a></li>
                             <li><a href="https://www.naukri.com/">About Us</a></li>
                             <li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>
-                         
+                            <li><Link to="/signup"><span className="glyphicon glyphicon-log-in" ></span> SignUp</Link></li>
+                           <li><Link  to="/login" onClick={this.logout} >LogOut</Link></li>
                         </ul>
 
                     </div>
@@ -29,5 +48,6 @@ function header() {
             </nav>
         </div>
     )
+    }
 }
-export default header
+export default Header
