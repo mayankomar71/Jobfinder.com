@@ -8,16 +8,23 @@ class Header extends React.Component {
     
       this.state = {
         isLoggedIn:localStorage.getItem('isLoggedIn'),
+        currentuser:localStorage.getItem('Currentuser'),
+        usertype:localStorage.getItem('user_type'),
         signUp:true,
         signIn:true,
-        usertype:localStorage.getItem('user_type')
       }
     }
     
     logout=()=>
     {
         localStorage.removeItem('Currentuser');
+        localStorage.removeItem('user_type');
         localStorage.setItem('isLoggedIn',"false")
+        this.setState({
+            signIn:true,
+            signUp:true
+
+        })
     }
     componentDidMount()
     {
@@ -53,13 +60,15 @@ class Header extends React.Component {
                             <li><a href="https://www.naukri.com/">About Us</a></li>
                             {this.state.signIn&&<li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>}
                             {this.state.signUp&&<li><Link to="/signup"><span className="glyphicon glyphicon-user" ></span> SignUp</Link></li>}
-                           {this.state.isLoggedIn==="true"&&<li><Link  to="/login" onClick={this.logout} >LogOut</Link></li>}
+                            {this.state.usertype==="company"&&<li><Link to="/postjobs"><span className="glyphicon glyphicon-plus" ></span>Add Jobs</Link></li>}
+                           {!this.state.signIn&&<li><Link  to="/" onClick={this.logout} >LogOut</Link></li>}
                         </ul>
 
                     </div>
                 </div>
 
             </nav>
+            {!this.state.signIn&&<h1>Welcome:{this.state.currentuser} to Naukri.com </h1>}
         </div>
     )
     }

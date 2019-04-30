@@ -72,6 +72,7 @@ componentDidMount()
                 console.log(response.data)
                 localStorage.setItem('Currentuser', response.data["name"])
                 localStorage.setItem('isLoggedIn', "true")
+                
                 if(response.data["role"]===1)
                 {
                     localStorage.setItem("user_type","admin")
@@ -83,7 +84,10 @@ componentDidMount()
                 else{
                     localStorage.setItem("user_type","company")
                 }
-                this.props.history.push('/')
+                this.props.history.push({pathname:'/',state:{
+                    company_name:response.data.name
+
+                }})
                 console.log('Successfully Logged In');
               
             })

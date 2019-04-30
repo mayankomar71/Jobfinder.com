@@ -9,16 +9,17 @@ class postjobs extends React.Component {
         super(props)
 
         this.state = {
-            email: '',
-            password: '',
-            name: '',
-            mobile: '',
-            formErrors: { name: '', email: '', password: '', phone: '' },
-            nameValid: false,
-            emailValid: false,
-            passwordValid: false,
-            phoneValid: false,
-            formValidsignup: false
+            company_name: '',
+            city: '',
+            job_designation: '',
+            salary:0,
+            formErrors: {  company_name: '', city: '', job_designation: '', salary:''},
+            company_name_valid: false,
+            company_city_valid: false,
+            job_designation_valid: false,
+            city_valid: false,
+            salary_valid:false,
+            formValid: false
         }
     }
 
@@ -36,28 +37,30 @@ class postjobs extends React.Component {
 
     validateField(fieldName, value) {
         let fieldValidationErrors = this.state.formErrors;
-        let emailValid = this.state.emailValid;
-        let passwordValid = this.state.passwordValid;
-        let nameValid = this.state.passwordValid;
-        let phoneValid = this.state.phoneValid
+        let company_name_valid= this.state.company_name_valid;
+        let company_city_valid= this.state.company_city_valid;
+        let salary_valid= this.state.salary_valid;
+        let job_designation_valid = this.state.job_designation_valid
         switch (fieldName) {
-            case 'email':
-                emailValid = value.match(/^([\w.%+-]+)@([\w-]+\.)+([\w]{2,})$/i);
-                fieldValidationErrors['email'] = emailValid ? '' : ' is invalid';
+        
+         
+            case 'company_name':
+                company_name_valid = value.length >= 5 &&value.match(/^[a-z][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/i);;
+                fieldValidationErrors.companyname = company_name_valid ? '' : 'Should be  Valid';
                 break;
-            case 'password':
-                passwordValid = value.length >= 8 && value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
+            case 'city':
+                company_city_valid = value.match(/^[a-z][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/i);
+                fieldValidationErrors.city = company_city_valid ? '' : 'Should be  Valid';
+                break;
+            case 'salary':
+                salary_valid = value.match(/^[0-9]+$/);
+                fieldValidationErrors.salary = salary_valid ? '' : 'Should contain numbers only';
+                break;
+            case 'job_designation':
+                job_designation_valid = value.match(/^[a-z][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/i);
+                fieldValidationErrors.designation = job_designation_valid ? '' : 'Should be  Valid';
+                break;   
 
-                fieldValidationErrors.password = passwordValid ? '' : 'is not valid';
-                break;
-            case 'name':
-                nameValid = value.match(/^[a-zA-Z]+$/);;
-                fieldValidationErrors.name = nameValid ? '' : 'Should be  Valid';
-                break;
-            case 'mobile':
-                phoneValid = value.length === 10 && value.match(/^[0-9]+$/);;
-                fieldValidationErrors.phone = phoneValid ? '' : 'Number should be valid.';
-                break;
             default:
                 break;
         }
@@ -65,33 +68,32 @@ class postjobs extends React.Component {
 
         this.setState({
             formErrors: fieldValidationErrors,
-            emailValid: emailValid,
-            passwordValid: passwordValid,
-            nameValid: nameValid,
-            phoneValid: phoneValid
+            company_name_valid:company_name_valid ,
+            city_valid: company_city_valid,
+            salary_valid:salary_valid ,
+            job_designation_valid:job_designation_valid
+
         }, this.validateForm);
     }
     validateForm() {
-        this.setState({ formValidsignup: this.state.emailValid && this.state.passwordValid && this.state.nameValid && this.state.phoneValid });
+        this.setState({ formValid: this.state.company_name_valid && this.state.city_valid && this.state.job_designation_valid && this.state.salary_valid });
     }
     handleFormSubmit = (event) => {
         event.preventDefault();
-        const { name, password, email, mobile } = this.state;
-        const role = "user"
-        axios.post('http://localhost:4000/user', { name, password, email, mobile, role })
+        const {company_name,city,job_designation,salary} = this.state;
+        axios.post('http://localhost:4000/jobs', { company_name, city, job_designation,salary})
             .then((response) => {
-                this.props.history.push('/login')
-                console.log('Successfully added user');
+                this.props.history.push('/')
+                console.log('Successfully added Job');
             })
             .catch(function (error) {
                 console.log(error);
             });
         this.setState({
-            name: '',
-            password: '',
-            email: '',
-            role: '',
-            mobile: ''
+            company_name: '',
+            city: '',
+            job_designation: '',
+            salary: ''
 
 
         })
@@ -108,38 +110,40 @@ class postjobs extends React.Component {
                     </div>
                     <h2 id='heading'><u>Post Jobs</u></h2>
                     <Input input_type={'text'}
-                        title={'Name'}
-                        name={'name'}
-                        value={this.state.name}
-                        placeholder={'Enter your Name'}
+                        title={'Company Name'}
+                        name={'company_name'}
+                        value={this.state.company_name}
+                        placeholder={'Enter your Name of your Company'}
                         handleChange={this.handleInput}
                     />
                     <Input input_type={'text'}
-                        title={' Email'}
-                        name={'email'}
-                        value={this.state.email}
-                        placeholder={'Enter your email'}
+                        title={'City'}
+                        name={'city'}
+                        value={this.state.city}
+                        placeholder={'Enter your City'}
                         handleChange={this.handleInput}
                     />
-                    <Input input_type={'password'}
-                        title={' Password'}
-                        name={'password'}
-                        value={this.state.password}
-                        placeholder={'Enter your password'}
+                     <Input input_type={'text'}
+                        title={'Job Designation'}
+                        name={'job_designation'}
+                        value={this.state.job_designation}
+                        placeholder={'Enter Job Designation'}
                         handleChange={this.handleInput}
                     />
-                    <Input input_type={'text'}
-                        title={'Mobile'}
-                        name={'mobile'}
-                        value={this.state.mobile}
-                        placeholder={'Enter your phone Number'}
+
+                    <Input input_type={'number'}
+                        title={'Salary'}
+                        name={'salary'}
+                        value={this.state.salary}
+                        placeholder={'Enter Salary'}
                         handleChange={this.handleInput}
                     />
+                   
                     <Button
                         action={this.handleFormSubmit}
                         type={'submit'}
                         title={'Submit'}
-                        disabled={!this.state.formValidsignup}
+                        disabled={false}
                     />
 
 

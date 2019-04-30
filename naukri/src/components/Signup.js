@@ -53,7 +53,7 @@ class Signup extends React.Component {
                 fieldValidationErrors.password = passwordValid ? '' : 'is not valid';
                 break;
             case 'name':
-                nameValid = value.match(/^[a-zA-Z]+$/);;
+                nameValid = value.match(/^[a-z][^0-9_!¡?÷?¿/\\+=@#$%ˆ&*(){}|~<>;:[\]]{2,}$/i);;
                 fieldValidationErrors.name = nameValid ? '' : 'Should be  Valid';
                 break;
             case 'mobile':
