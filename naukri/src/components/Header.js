@@ -60,7 +60,7 @@ class Header extends React.Component {
                             <li><a href="https://www.naukri.com/">About Us</a></li>
                             {this.state.signIn&&<li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>}
                             {this.state.signUp&&<li><Link to="/signup"><span className="glyphicon glyphicon-user" ></span> SignUp</Link></li>}
-                            {this.state.usertype==="company"&&<li><Link to="/postjobs"><span className="glyphicon glyphicon-plus" ></span>Add Jobs</Link></li>}
+                            {!this.state.signIn&&this.state.usertype==="company"&&<li><Link to="/postjobs"><span className="glyphicon glyphicon-plus" ></span>Add Jobs</Link></li>}
                            {!this.state.signIn&&<li><Link  to="/" onClick={this.logout} >LogOut</Link></li>}
                         </ul>
 
