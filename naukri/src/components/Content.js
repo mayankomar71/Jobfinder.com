@@ -1,7 +1,7 @@
 import React, { Component } from 'react'
 import SweetAlert from 'react-bootstrap-sweetalert';
-import './content.css'
-import logo from './company.png'
+import '../Styles/content.css'
+import logo from '../images/company.png'
 
 class Content extends Component {
   constructor(props) {
