@@ -10,7 +10,9 @@ class HomeComponent extends Component {
     super(props)
 
     this.state = {
-      arr: jobs
+      arr: jobs,
+      currentuser:localStorage.getItem('Currentuser'),
+      isloggedIn:localStorage.getItem('isLoggedIn')
     }
    
 
@@ -34,6 +36,7 @@ class HomeComponent extends Component {
 
 
         <Header></Header>
+        {this.state.isloggedIn==="true"&&<h1>Welcome:{this.state.currentuser} to Naukri.com </h1>}
        <Filters Mydata={this.filterdata} jobData={jobs}></Filters>
         <Content data={this.state.arr}></Content>
         <Footer></Footer>

@@ -6,6 +6,7 @@ import axios from 'axios'
 
 class Login extends React.Component {
     constructor(props) {
+
         super(props)
 
         this.state = {
@@ -19,7 +20,10 @@ class Login extends React.Component {
             formValid: false
         }
     }
-
+componentDidMount()
+{
+    localStorage.getItem('Currentuser')&& this.props.history.push('/')
+}
 
     handleInput = (e) => {
         const value = e.target.value;
@@ -73,11 +77,11 @@ class Login extends React.Component {
             .then((response) => {
 
                 console.log(response.data)
+                localStorage.setItem('Currentuser', response.data["name"])
+                localStorage.setItem('isLoggedIn', "true")
                 this.props.history.push('/')
                 console.log('Successfully Logged In');
-                localStorage.setItem('Currentuser', JSON.stringify(response.data["name"]))
-                localStorage.setItem('isLoggedIn', true)
-
+              
             })
             .catch(function (error) {
                 console.log(error);

@@ -7,14 +7,27 @@ class Header extends React.Component {
       super(props)
     
       this.state = {
-         currentstate:false
+        isLoggedIn:localStorage.getItem('isLoggedIn'),
+        signUp:true,
+        signIn:true
       }
     }
     
     logout=()=>
     {
         localStorage.removeItem('Currentuser');
-        localStorage.setItem('isLoggedIn',false)
+        localStorage.setItem('isLoggedIn',"false")
+    }
+    componentDidMount()
+    {
+        if(this.state.isLoggedIn==="true")
+        {
+            this.setState({
+                signIn:false,
+                signUp:false
+            })
+
+        }
     }
     render()
     {
@@ -37,9 +50,9 @@ class Header extends React.Component {
                         <ul className="nav navbar-nav">
                             <li><a href="https://www.naukri.com/">Home</a></li>
                             <li><a href="https://www.naukri.com/">About Us</a></li>
-                            <li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>
-                            <li><Link to="/signup"><span className="glyphicon glyphicon-log-in" ></span> SignUp</Link></li>
-                           <li><Link  to="/login" onClick={this.logout} >LogOut</Link></li>
+                            {this.state.signIn&&<li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>}
+                            {this.state.signUp&&<li><Link to="/signup"><span className="glyphicon glyphicon-user" ></span> SignUp</Link></li>}
+                           {this.state.isLoggedIn==="true"&&<li><Link  to="/login" onClick={this.logout} >LogOut</Link></li>}
                         </ul>
 
                     </div>
