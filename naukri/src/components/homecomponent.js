@@ -13,14 +13,15 @@ class HomeComponent extends Component {
     this.state = {
       arr: [],
       currentuser: localStorage.getItem('Currentuser'),
-      isloggedIn: localStorage.getItem('isLoggedIn')
+      isloggedIn: localStorage.getItem('isLoggedIn'),
+      flag: true
     }
 
 
 
 
   }
-  
+
   componentDidMount() {
     if (localStorage.getItem('user_type') === "user" || localStorage.getItem('user_type') === null) {
       axios.get('http://localhost:4000/jobs')
@@ -67,6 +68,28 @@ class HomeComponent extends Component {
 
 
   }
+  componentWillReceiveProps(nextProps) {
+
+    axios.get('http://localhost:4000/jobs')
+      .then((response) => {
+        this.setState({
+          arr: response.data,
+          jobs: response.data
+        })
+
+      })
+      .catch(function (error) {
+        console.log(error);
+      });
+
+
+  }
+
+
+
+
+
+
 
   render() {
 

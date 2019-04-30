@@ -20,10 +20,9 @@ class Login extends React.Component {
             formValid: false
         }
     }
-componentDidMount()
-{
-    localStorage.getItem('isLoggedIn')==="true"&& this.props.history.push('/')
-}
+    componentDidMount() {
+        localStorage.getItem('isLoggedIn') === "true" && this.props.history.push('/')
+    }
 
     handleInput = (e) => {
         const value = e.target.value;
@@ -67,29 +66,29 @@ componentDidMount()
     handleFormSubmit = (event) => {
         event.preventDefault();
         const { email, password } = this.state;
-        axios.post('http://localhost:4000/getuser',{email,password})
+        axios.post('http://localhost:4000/getuser', { email, password })
             .then((response) => {
                 console.log(response.data)
                 localStorage.setItem('Currentuser', response.data["name"])
                 localStorage.setItem('isLoggedIn', "true")
-                
-                if(response.data["role"]===1)
-                {
-                    localStorage.setItem("user_type","admin")
-                }
-                else if(response.data["role"]===2)
-                {
-                    localStorage.setItem("user_type","user")
-                }
-                else{
-                    localStorage.setItem("user_type","company")
-                }
-                this.props.history.push({pathname:'/',state:{
-                    company_name:response.data.name
 
-                }})
+                if (response.data["role"] === 1) {
+                    localStorage.setItem("user_type", "admin")
+                }
+                else if (response.data["role"] === 2) {
+                    localStorage.setItem("user_type", "user")
+                }
+                else {
+                    localStorage.setItem("user_type", "company")
+                }
+                this.props.history.push({
+                    pathname: '/', state: {
+                        company_name: response.data.name
+
+                    }
+                })
                 console.log('Successfully Logged In');
-              
+
             })
             .catch(function (error) {
                 console.log(error);
