@@ -9,7 +9,8 @@ class Header extends React.Component {
       this.state = {
         isLoggedIn:localStorage.getItem('isLoggedIn'),
         signUp:true,
-        signIn:true
+        signIn:true,
+        usertype:localStorage.getItem('user_type')
       }
     }
     

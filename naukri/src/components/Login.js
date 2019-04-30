@@ -22,7 +22,7 @@ class Login extends React.Component {
     }
 componentDidMount()
 {
-    localStorage.getItem('Currentuser')&& this.props.history.push('/')
+    localStorage.getItem('isLoggedIn')==="true"&& this.props.history.push('/')
 }
 
     handleInput = (e) => {
@@ -67,18 +67,22 @@ componentDidMount()
     handleFormSubmit = (event) => {
         event.preventDefault();
         const { email, password } = this.state;
-
-        axios.get(`http://localhost:4000/getuser`, {
-            params: {
-                useremail: email,
-                userpassword: password
-            }
-        })
+        axios.post('http://localhost:4000/getuser',{email,password})
             .then((response) => {
-
                 console.log(response.data)
                 localStorage.setItem('Currentuser', response.data["name"])
                 localStorage.setItem('isLoggedIn', "true")
+                if(response.data["role"]===1)
+                {
+                    localStorage.setItem("user_type","admin")
+                }
+                else if(response.data["role"]===2)
+                {
+                    localStorage.setItem("user_type","user")
+                }
+                else{
+                    localStorage.setItem("user_type","company")
+                }
                 this.props.history.push('/')
                 console.log('Successfully Logged In');
               
@@ -116,6 +120,7 @@ componentDidMount()
                         action={this.handleFormSubmit}
                         type={'submit'}
                         title={'Submit'}
+                        disabled={!this.state.formValid}
                     />
 
                 </form>

@@ -4,7 +4,7 @@ import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
 import axios from 'axios'
 
-class Signup extends React.Component {
+class postjobs extends React.Component {
     constructor(props) {
         super(props)
 
@@ -30,9 +30,7 @@ class Signup extends React.Component {
             () => { this.validateField(name, value) });
 
     }
-    componentDidMount() {
-        localStorage.getItem('isLoggedIn') === "true" && this.props.history.push('/')
-    }
+   
 
 
 
@@ -108,7 +106,7 @@ class Signup extends React.Component {
                     <div className="default">
                         <FormErrors formErrors={this.state.formErrors} />
                     </div>
-                    <h2 id='heading'><u>Sign Up</u></h2>
+                    <h2 id='heading'><u>Post Jobs</u></h2>
                     <Input input_type={'text'}
                         title={'Name'}
                         name={'name'}
@@ -154,4 +152,4 @@ class Signup extends React.Component {
     }
 
 }
-export default Signup
+export default postjobs
