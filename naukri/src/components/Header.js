@@ -61,7 +61,7 @@ class Header extends React.Component {
                                     pathname: '/', state: {
                                         flag: false
                                     }
-                                }} onClick={this.logout} >LogOut</Link></li>}
+                                }} onClick={this.logout} ><span className="glyphicon glyphicon-log-out" ></span>LogOut</Link></li>}
                             </ul>
 
                         </div>
