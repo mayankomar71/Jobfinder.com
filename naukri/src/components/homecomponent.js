@@ -100,7 +100,7 @@ class HomeComponent extends Component {
 
         <Header></Header>
         <Filters Mydata={this.filterdata} jobData={this.state.jobs}></Filters>
-        <Content data={this.state.arr}></Content>
+        <Content flag={this.props.history.location.state.flag}data={this.state.arr}></Content>
         <Footer></Footer>
 
 

@@ -11,6 +11,7 @@ class Content extends Component {
       alert: null
     };
   }
+ 
   alert() {
     const getAlert = () => (
       <SweetAlert
@@ -59,7 +60,9 @@ class Content extends Component {
                 <h3>{data.company_name}</h3>
                 <h3>{data.city}</h3>
                 <h4><i className="fa fa-rupee"></i> {data.salary} lakhs p.a</h4>
-                <button onClick={() => this.alert()} className="btn btn-success">Apply</button>
+                {(localStorage.getItem('user_type')==="user" || localStorage.getItem('user_type')===null)&&<button onClick={() => this.alert()} className="btn btn-success">Apply</button>}
+                {/* {this.state.isloggedin==="false"&&this.state.flag&&<button onClick={() => this.alert()} className="btn btn-success">Apply</button>} */}
+                
               </div>
             </div>
           </div>
