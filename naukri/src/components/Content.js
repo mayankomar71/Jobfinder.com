@@ -57,7 +57,8 @@ class Content extends Component {
     }
 
     const jobdata = this.props.data
-    return jobdata.map((data, index) => {
+    const jobdata1=jobdata.reverse();
+    return jobdata1.map((data, index) => {
       return (
         <div key={index} className="container-fluid ">
           <div className="row">
