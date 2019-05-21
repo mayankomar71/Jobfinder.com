@@ -2,7 +2,6 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
-import axios from 'axios'
 
 class Signup extends React.Component {
     constructor(props) {
@@ -80,14 +79,8 @@ class Signup extends React.Component {
         event.preventDefault();
         const { name, password, email, mobile } = this.state;
         const role = "user"
-        axios.post('http://localhost:4000/user', { name, password, email, mobile, role })
-            .then((response) => {
-                this.props.history.push('/login')
-                console.log('Successfully added user');
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
+        this.props.getsignup({ name, email, password, mobile, role })
+        alert('Signup Successsful');
         this.setState({
             name: '',
             password: '',
@@ -97,6 +90,7 @@ class Signup extends React.Component {
 
 
         })
+        return this.props.history.push('/login');
     }
 
 

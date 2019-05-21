@@ -2,7 +2,7 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
-import axios from 'axios'
+// import axios from 'axios'
 
 class Login extends React.Component {
     constructor(props) {
@@ -63,37 +63,25 @@ class Login extends React.Component {
         this.setState({ formValid: this.state.emailValid && this.state.passwordValid });
 
     }
-    handleFormSubmit = (event) => {
+    componentWillReceiveProps(nextProps) {
+          this.setState({ currentUser: nextProps.currentUser }, () => {
+            localStorage.setItem('isLoggedIn',"true")
+            localStorage.setItem("Currentuser", JSON.stringify(nextProps.currentUser.name));
+            localStorage.setItem("user_type", JSON.stringify(nextProps.currentUser.role));
+    
+            return this.props.history.push('/')
+            
+        })
+        console.log(nextProps)
+
+    }
+    handleFormSubmit= (event) => {
         event.preventDefault();
-        const { email, password } = this.state;
-        axios.post('http://localhost:4000/getuser', { email, password })
-            .then((response) => {
-                console.log(response.data)
-                localStorage.setItem('Currentuser', response.data["name"])
-                localStorage.setItem('isLoggedIn', "true")
-
-                if (response.data["role"] === 1) {
-                    localStorage.setItem("user_type", "admin")
-                }
-                else if (response.data["role"] === 2) {
-                    localStorage.setItem("user_type", "user")
-                }
-                else {
-                    localStorage.setItem("user_type", "company")
-                }
-                this.props.history.push({
-                    pathname: '/', state: {
-                        company_name: response.data.name
-
-                    }
-                })
-                console.log('Successfully Logged In');
-
-            })
-            .catch(function (error) {
-                console.log(error);
-            });
-
+        this.props.getlogin({
+            email: this.state.email,
+            password: this.state.password
+        });
+        
     }
 
 

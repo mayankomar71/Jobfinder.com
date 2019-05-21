@@ -2,7 +2,6 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
-import axios from 'axios'
 
 class postjobs extends React.Component {
   constructor(props) {
@@ -73,20 +72,19 @@ class postjobs extends React.Component {
     this.setState({ formValid:  this.state.city_valid && this.state.job_designation_valid && this.state.salary_valid });
   }
   handleFormSubmit = (event) => {
+    event.preventDefault();
     if(localStorage.getItem('Currentuser')){
       var company_name=localStorage.getItem('Currentuser');
       company_name = company_name.replace(/"/g,"");
   }
-    event.preventDefault();
-    const {  city, job_designation, salary } = this.state;
-    axios.post('http://localhost:4000/jobs', { company_name, city, job_designation, salary })
-      .then((response) => {
-        this.props.history.push('/')
-        console.log('Successfully added Job');
-      })
-      .catch(function (error) {
-        console.log(error);
-      });
+    
+    this.props.postJob({
+      company_name: company_name,
+      city: this.state.city,
+      job_designation:this.state.job_designation,
+      salary: this.state.salary,
+      
+    })
     this.setState({
       company_name: '',
       city: '',
@@ -95,6 +93,10 @@ class postjobs extends React.Component {
 
 
     })
+
+    return this.props.history.push('/');
+
+ 
   }
 
 
@@ -152,3 +154,16 @@ class postjobs extends React.Component {
 
 }
 export default postjobs
+
+
+
+
+
+
+
+
+
+
+
+
+

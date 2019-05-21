@@ -1,10 +1,8 @@
 import React, { Component } from 'react';
 import Header from './Header'
-// import jobs from './jobs'
 import Content from './Content'
 import Filters from './Filters'
 import Footer from './Footer'
-import axios from 'axios'
 
 class HomeComponent extends Component {
   constructor(props) {
@@ -12,6 +10,7 @@ class HomeComponent extends Component {
 
     this.state = {
       arr: [],
+      count:0,
       currentuser: localStorage.getItem('Currentuser'),
       isloggedIn: localStorage.getItem('isLoggedIn'),
       flag: true
@@ -21,40 +20,23 @@ class HomeComponent extends Component {
 
 
   }
-
-  componentDidMount() {
-    if (localStorage.getItem('user_type') === "user" || localStorage.getItem('user_type') === null) {
-      axios.get('http://localhost:4000/jobs')
-        .then((response) => {
-          this.setState({
-            arr: response.data,
-            jobs: response.data
-          })
-
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
+ 
+componentWillMount(){
+    if (localStorage.getItem('user_type') === "2" || localStorage.getItem('user_type') === null) {
+      this.props.getjob_user();
+      this.setState({
+        arr: this.props.alljobs,
+        jobs: this.props.alljobs
+      })
 
     }
     else {
-
-      axios.get('http://localhost:4000/jobs/company', {
-        params: {
-          company_name: this.state.currentuser
-          // this.props.history.location.state.company_name
-        }
+      var companyname=JSON.parse(this.state.currentuser)
+      this.props.getjob_user(companyname);
+      this.setState({
+        arr: this.props.alljobs,
+        jobs: this.props.alljobs
       })
-        .then((response) => {
-          this.setState({
-            arr: response.data,
-            jobs: response.data
-          })
-
-        })
-        .catch(function (error) {
-          console.log(error);
-        });
     }
 
 
@@ -69,21 +51,34 @@ class HomeComponent extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
-
-    axios.get('http://localhost:4000/jobs')
-      .then((response) => {
-        this.setState({
-          arr: response.data,
-          jobs: response.data
-        })
-
+    this.setState({
+      arr: nextProps.alljobs,
+      jobs: nextProps.alljobs
+    })
+    if(localStorage.getItem('user_type') === null)
+    {
+     
+      if(this.state.count===0)
+      {
+      this.props.getjob_user();
+      this.setState({
+        arr: this.props.alljobs,
+        jobs: this.props.alljobs,
+        count:1
       })
-      .catch(function (error) {
-        console.log(error);
-      });
+      
+    }
+
+    
+    }
+ 
+
+  
+
 
 
   }
+ 
 
 
 
