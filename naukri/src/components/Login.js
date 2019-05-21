@@ -68,6 +68,7 @@ class Login extends React.Component {
             localStorage.setItem('isLoggedIn',"true")
             localStorage.setItem("Currentuser", JSON.stringify(nextProps.currentUser.name));
             localStorage.setItem("user_type", JSON.stringify(nextProps.currentUser.role));
+            localStorage.setItem('Currentid', JSON.stringify(nextProps.currentUser._id));
     
             return this.props.history.push('/')
             

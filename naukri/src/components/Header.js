@@ -18,6 +18,8 @@ class Header extends React.Component {
     logout = () => {
         localStorage.removeItem('Currentuser');
         localStorage.removeItem('user_type');
+        localStorage.removeItem('job_id');
+        localStorage.removeItem('Currentid');
         localStorage.setItem('isLoggedIn', "false")
         this.setState({
             signIn: true,

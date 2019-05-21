@@ -27,6 +27,9 @@ class Content extends Component {
       alert: getAlert()
     });
   }
+
+  
+
   handleClick = (ele, e) => {
     localStorage.setItem('job_id', ele._id);      
     console.log(ele)
