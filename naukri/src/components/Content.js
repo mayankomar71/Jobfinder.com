@@ -2,6 +2,7 @@ import React, { Component } from 'react'
 import SweetAlert from 'react-bootstrap-sweetalert';
 import '../Styles/content.css'
 import logo from '../images/company.png'
+import { withRouter } from "react-router-dom";
 
 class Content extends Component {
   constructor(props) {
@@ -26,6 +27,13 @@ class Content extends Component {
       alert: getAlert()
     });
   }
+  handleClick = (ele, e) => {
+    localStorage.setItem('job_id', ele._id);      
+    console.log(ele)
+    this.props.history.push(`/update/${JSON.stringify(ele)}`)
+
+
+}
 
   hideAlert() {
     console.log('Hiding alert...');
@@ -60,7 +68,7 @@ class Content extends Component {
                 <h3>{data.company_name}</h3>
                 <h3>{data.city}</h3>
                 <h4><i className="fa fa-rupee"></i> {data.salary} lakhs p.a</h4>
-                {(localStorage.getItem('user_type')==="3")&&<button onClick={() => this.alert()} className="btn btn-success">Edit</button>}
+                {(localStorage.getItem('user_type')==="3")&&<button onClick={(e) => this.handleClick(data, e)}  className="btn btn-success">Edit</button>}
                 {(localStorage.getItem('user_type')==="2" || localStorage.getItem('user_type')===null)&&<button onClick={() => this.alert()} className="btn btn-success">Apply</button>}
                
                 
@@ -74,4 +82,4 @@ class Content extends Component {
     })
   }
 }
-export default Content
+export default withRouter(Content);

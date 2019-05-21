@@ -12,6 +12,13 @@ export const postJobSucess = (data) => {
         payload: data
     }
 }
+export const updateJobSucess = (data) => {
+    return {
+        type: "UPDATE_JOB",
+        payload: data
+    }
+}
+
 export const getjob_user = (company) => {
     if (company) {
         return dispatch => {
@@ -42,32 +49,6 @@ export const getjob_user = (company) => {
 
 
 }
-// export const postjob = (data) => {
-
-//     return dispatch => {
-//         axios.post('http://localhost:4000/postjob',data)
-//         .then((res) => {
-//             if (res.data.errors) {
-//                 window.alert(JSON.parse(res.data.message));
-//             }
-//             else {
-//                 let pr = new Promise((resolve, reject) => {
-//                     dispatch(postJobSuccess(res.data));
-//                     resolve();
-//                 })
-//                 pr.then(() => {
-//                     dispatch(getjob_user(data.company_name));
-//                 })
-//             }
-//         }).catch((err) => {
-//             return err;
-//         })
-
-//     }
-// }
-
-
-
 export const postJob = (company) => {
     var url;
 
@@ -93,5 +74,26 @@ export const postJob = (company) => {
             return err;
         })
 
+    }
+}
+export const updateJobs= (data, company_name) => {
+    return dispatch => {
+        axios.put('http://localhost:4000/jobupdate', data)
+            .then((res) => {
+                if (res.data.errors) {
+                    window.alert(JSON.parse(res.data.message));
+                }
+                else {
+                    let pr = new Promise((resolve, reject) => {
+                        dispatch(updateJobSucess(res.data));
+                        resolve();
+                    })
+                    pr.then(() => {
+                        dispatch(getjob_user(company_name));
+                    })
+                }
+            }).catch((err) => {
+                return err;
+            })
     }
 }

@@ -13,6 +13,13 @@ const JobReducer = (state = {data:[]}, action)=> {
                 
             };
         }
+        case 'UPDATE_JOB':{
+             return state = {
+                 ...state
+                
+                 
+             };
+         }
          
        
       
