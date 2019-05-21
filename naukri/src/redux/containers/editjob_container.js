@@ -1,4 +1,3 @@
-import React, { Component } from 'react'
 import EditJobs from '../../components/Editjobs'
 import  {connect} from  "react-redux";
 import {updateJobs} from '../actions/job_action'

@@ -36,7 +36,6 @@ class Content extends Component {
 }
 
   hideAlert() {
-    console.log('Hiding alert...');
     this.setState({
       alert: null
     });
