@@ -95,11 +95,11 @@ componentWillMount(){
 
         <Header></Header>
         <Filters Mydata={this.filterdata} jobData={this.state.jobs}></Filters>
-        <Content data={this.state.arr}></Content>
+        <Content applydata={this.props} data={this.state.arr}></Content>
         <Footer></Footer>
 
 
-
+  
       </div>
     );
 

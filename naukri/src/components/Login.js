@@ -2,7 +2,6 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
-// import axios from 'axios'
 
 class Login extends React.Component {
     constructor(props) {
@@ -44,7 +43,6 @@ class Login extends React.Component {
                 break;
             case 'password':
                 passwordValid = value.length >= 8 && value.match(/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/);
-
                 fieldValidationErrors.password = passwordValid ? '' : 'is not valid';
                 break;
 
@@ -73,7 +71,6 @@ class Login extends React.Component {
             return this.props.history.push('/')
             
         })
-        console.log(nextProps)
 
     }
     handleFormSubmit= (event) => {
