@@ -26,7 +26,13 @@ class Header extends React.Component {
             signUp: true
 
         })
+        this.props.history.push({
+            state: {
+                flag: false
+            }
+        })
     }
+
     componentDidMount() {
         if (this.state.isLoggedIn === "true") {
             this.setState({
@@ -59,6 +65,8 @@ class Header extends React.Component {
                                 {this.state.signIn && <li><Link to="/login"><span className="glyphicon glyphicon-log-in" ></span> Login</Link></li>}
                                 {this.state.signUp && <li><Link to="/signup"><span className="glyphicon glyphicon-user" ></span> SignUp</Link></li>}
                                 {!this.state.signIn && this.state.usertype === "3" && <li><Link to="/postjobs"><span className="glyphicon glyphicon-plus" ></span>Add Jobs</Link></li>}
+                                {!this.state.signIn&&this.state.usertype === "2" && <li><Link to='/show_applied'><span className="glyphicon glyphicon-plus" ></span>Show applied</Link></li>}
+                                {!this.state.signIn&&this.state.usertype === "3" && <li><Link to='/get_applied'><span className="glyphicon glyphicon-plus" ></span>Applied Users</Link></li>}
                                 {!this.state.signIn && <li><Link to={{
                                     pathname: '/', state: {
                                         flag: false

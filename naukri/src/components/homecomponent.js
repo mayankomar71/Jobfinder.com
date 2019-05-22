@@ -10,7 +10,6 @@ class HomeComponent extends Component {
 
     this.state = {
       arr: [],
-      count:0,
       currentuser: localStorage.getItem('Currentuser'),
       isloggedIn: localStorage.getItem('isLoggedIn'),
       flag: true
@@ -55,23 +54,7 @@ componentWillMount(){
       arr: nextProps.alljobs,
       jobs: nextProps.alljobs
     })
-    if(localStorage.getItem('user_type') === null)
-    {
-     
-      if(this.state.count===0)
-      {
-      this.props.getjob_user();
-      this.setState({
-        arr: this.props.alljobs,
-        jobs: this.props.alljobs,
-        count:1
-      })
-      
-    }
-
-    
-    }
- 
+  
 
   
 

@@ -61,7 +61,6 @@ export const get_applyjob_company = (company) => {
     return dispatch => {
         axios.get(url)
             .then((res) => {
-                console.log(res.data);
                 dispatch(getapply_data_company(res.data));
             }).catch((err) => {
                 return err;
