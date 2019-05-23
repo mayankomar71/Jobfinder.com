@@ -57,12 +57,13 @@ class Content extends Component {
     user_id = user_id.replace(/"/g, "");
     let user_name = localStorage.getItem('Currentuser');
     user_name = user_name.replace(/"/g, "");
+    let phone =parseInt(localStorage.getItem('Phone_number'))
     let job_id = ele._id;
     let job_designation = ele.job_designation;
     let salary = ele.salary;
     let company_name = ele.company_name;
     let location = ele.city;
-    this.props.applydata.apply_job({ user_id, user_name, job_id, job_designation, salary, company_name, location});
+    this.props.applydata.apply_job({ user_id, user_name, job_id, job_designation, salary, company_name, location,phone});
     this.props.applydata.get_applyjob(user_id);
    
     this.setState({

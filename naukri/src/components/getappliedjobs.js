@@ -79,7 +79,8 @@ export class Getapplied extends Component {
                     </div>
                     <div className="card col-sm-8">
                       <h3>{data.job_designation}</h3>
-                      <h3>{data.company_name}</h3>
+                      <h3>{data.user_name}</h3>
+                      <h3>{data.user_phone}</h3>
                       <h3>{data.city}</h3>
                       <h4><i className="fa fa-rupee"></i> {data.salary} lakhs P.A</h4>
                         {(data.job_status === 3) ? <b><p style={{'color':'red'}}>Status:Rejected</p></b> : null}

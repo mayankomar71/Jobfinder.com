@@ -67,7 +67,7 @@ class Login extends React.Component {
             localStorage.setItem("Currentuser", JSON.stringify(nextProps.currentUser.name));
             localStorage.setItem("user_type", JSON.stringify(nextProps.currentUser.role));
             localStorage.setItem('Currentid', JSON.stringify(nextProps.currentUser._id));
-    
+            localStorage.setItem('Phone_number',nextProps.currentUser.mobile)
             return this.props.history.push('/')
             
         })
