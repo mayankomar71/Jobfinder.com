@@ -93,12 +93,16 @@ class postjobs extends React.Component {
 
 
     })
-
-    return this.props.history.push('/');
+    alert('Job Added');
+    this.props.history.push({
+      pathname: '/', state: {
+          falg: false
+      }
+  });
+}
 
  
-  }
-
+  
 
 
   render() {

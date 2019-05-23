@@ -19,17 +19,12 @@ export const updateJobSucess = (data) => {
     }
 }
 
-export const getjob_user = (company) => {
+export const getjob_user = (pageNo,company) => {
     if (company) {
         return dispatch => {
-            axios.get('http://localhost:4000/jobs/company', {
-
-                params: {
-                    company_name: company
-                }
-
-            }).then((res) => {
-                dispatch(getDataSuccess(res.data));
+            axios.get(`http://localhost:4000/jobs/companyjobs${'/'}${company}${'/'}${pageNo}`).then((res) => {
+                localStorage.setItem('total_page', res.data.page)
+                dispatch(getDataSuccess(res.data.message));
             }).catch((err) => {
                 return err;
             })
@@ -38,8 +33,9 @@ export const getjob_user = (company) => {
     }
     else {
         return dispatch => {
-            axios.get('http://localhost:4000/jobs').then((res) => {
-                dispatch(getDataSuccess(res.data));
+            axios.get(`http://localhost:4000/jobs${'/'}${pageNo}`).then((res) => {
+                localStorage.setItem('total_page', res.data.page)
+                dispatch(getDataSuccess(res.data.message));
             }).catch((err) => {
                 return err;
             })
