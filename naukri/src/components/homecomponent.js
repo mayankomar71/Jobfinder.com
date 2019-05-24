@@ -27,7 +27,6 @@ class HomeComponent extends Component {
         arr: this.props.alljobs,
         jobs: this.props.alljobs
       })
-
     }
     else {
       var companyname=JSON.parse(this.state.currentuser)
@@ -97,7 +96,7 @@ class HomeComponent extends Component {
         <Filters Mydata={this.filterdata} jobData={this.state.jobs}></Filters>
         <Content applydata={this.props} data={this.state.arr}></Content>
         
-          <div className="page_buttons">
+          <div>
             {total_array.map((ele, index) => {
               return <button key={index} className="btn btn-success" style={{ marginLeft: '15px' }} type="button" id={ele} onClick={(e) => this.button_page(e, ele)}>{ele}</button>
             })}

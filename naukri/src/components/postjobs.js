@@ -67,8 +67,6 @@ class postjobs extends React.Component {
     }, this.validateForm);
   }
   validateForm() {
-    console.log(this.state.formErrors)
-
     this.setState({ formValid:  this.state.city_valid && this.state.job_designation_valid && this.state.salary_valid });
   }
   handleFormSubmit = (event) => {
@@ -94,11 +92,7 @@ class postjobs extends React.Component {
 
     })
     alert('Job Added');
-    this.props.history.push({
-      pathname: '/', state: {
-          falg: false
-      }
-  });
+    this.props.history.push('/')
 }
 
  

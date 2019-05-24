@@ -33,7 +33,7 @@ export const getjob_user = (pageNo,company) => {
     }
     else {
         return dispatch => {
-            axios.get(`http://localhost:4000/jobs${'/'}${pageNo}`).then((res) => {
+            axios.get(`http://localhost:4000/jobs/${pageNo}`).then((res) => {
                 localStorage.setItem('total_page', res.data.page)
                 dispatch(getDataSuccess(res.data.message));
             }).catch((err) => {
@@ -50,9 +50,7 @@ export const postJob = (company) => {
 
     url = 'http://localhost:4000/postjob/';
     return dispatch => {
-        console.log(company)
         axios.post(url, company).then((res) => {
-            console.log(res.data);
             if (res.data.errors) {
                 window.alert(JSON.stringify(res.data.message))
             } else {
@@ -61,7 +59,7 @@ export const postJob = (company) => {
                     resolve();
                 })
                 pr.then(() => {
-                    dispatch(getjob_user(company.name))
+                    dispatch(getjob_user(1,company.company_name))
                 })
 
             }
@@ -85,7 +83,7 @@ export const updateJobs= (data, company_name) => {
                         resolve();
                     })
                     pr.then(() => {
-                        dispatch(getjob_user(company_name));
+                        dispatch(getjob_user(1,company_name));
                     })
                 }
             }).catch((err) => {
