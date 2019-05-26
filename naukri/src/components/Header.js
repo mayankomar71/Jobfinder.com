@@ -23,6 +23,7 @@ class Header extends React.Component {
         localStorage.removeItem('Phone_number');
         localStorage.removeItem('current_page');
         localStorage.removeItem('total_page');
+        localStorage.removeItem('skills');
         localStorage.setItem('isLoggedIn', "false")
         this.setState({
             signIn: true,

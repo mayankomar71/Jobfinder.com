@@ -2,12 +2,30 @@ import React from 'react';
 import Input from './generalComponent/inputcomponent'
 import Button from './generalComponent/buttoncomponent'
 import { FormErrors } from './generalComponent/formerrors'
+import Skills from './Suggestions'
+import '../Styles/content.css'
+import { WithContext as ReactTags } from 'react-tag-input'
+const KeyCodes = {
+  comma: 188,
+  enter: 13
+}
+
+const suggestions = Skills.map(skills => {
+  return {
+    id: skills,
+    text: skills
+  }
+})
+
+const delimiters = [KeyCodes.comma, KeyCodes.enter]
 
 class postjobs extends React.Component {
   constructor(props) {
     super(props)
 
     this.state = {
+      tags:[],
+      suggestions: suggestions,
       company_name: '',
       city: '',
       job_designation: '',
@@ -19,6 +37,24 @@ class postjobs extends React.Component {
       salary_valid: false,
       addformValid: false
     }
+  }
+  handleDelete= (i)=> {
+    const { tags } = this.state
+    this.setState({
+      tags: tags.filter((tag, index) => index !== i)
+    })
+  }
+
+  handleAddition =(tag)=> {
+    this.setState(state => ({ tags: [...state.tags, tag] }))
+  }
+
+  handleDrag =(tag, currPos, newPos)=> {
+    const tags = [...this.state.tags]
+    const newTags = tags.slice()
+    newTags.splice(currPos, 1)
+    newTags.splice(newPos, 0, tag)
+    this.setState({ tags: newTags })
   }
 
 
@@ -81,13 +117,15 @@ class postjobs extends React.Component {
       city: this.state.city,
       job_designation:this.state.job_designation,
       salary: this.state.salary,
+      tags:this.state.tags
       
     })
     this.setState({
       company_name: '',
       city: '',
       job_designation: '',
-      salary: ''
+      salary: '',
+      tags:[]
 
 
     })
@@ -100,6 +138,7 @@ class postjobs extends React.Component {
 
 
   render() {
+    const { tags, suggestions } = this.state
     return (
       <div>
         <form className="form-group" onSubmit={this.handleFormSubmit}>
@@ -131,9 +170,18 @@ class postjobs extends React.Component {
             placeholder={'Enter Salary'}
             handleChange={this.handleInput}
           />
+            <label htmlFor="Skills" className="form-label">Add Skills</label>
+          <ReactTags
+            tags={tags}
+            suggestions={suggestions}
+            delimiters={delimiters}
+            handleDelete={this.handleDelete}
+            handleAddition={this.handleAddition}
+            handleDrag={this.handleDrag}
+          /><br></br>
 
           {
-          this.state.city&&this.state.job_designation&&this.state.salary&&<Button
+          this.state.tags[3]&&this.state.city&&this.state.job_designation&&this.state.salary&&<Button
             action={this.handleFormSubmit}
             type={'submit'}
             title={'Submit'}

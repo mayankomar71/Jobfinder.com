@@ -73,8 +73,6 @@ class Editjobs extends React.Component {
   }
 
   validateForm () {
-    console.log(this.state.formErrors)
-
     this.setState({ formValid: this.state.city_valid && this.state.job_designation_valid && this.state.salary_valid })
   }
 
@@ -109,7 +107,6 @@ class Editjobs extends React.Component {
   }
   componentWillMount () {
     let job_object = JSON.parse(this.props.match.params.job)
-    console.log(job_object)
     this.setState({
       job_designation: job_object.job_designation,
       salary: job_object.salary,
@@ -125,7 +122,7 @@ class Editjobs extends React.Component {
             <FormErrors formErrors={this.state.formErrors} />
           </div>
           <h2 id='heading'>
-            <u>Post Jobs</u>
+            <u>Edit Jobs</u>
           </h2>
 
           <Input

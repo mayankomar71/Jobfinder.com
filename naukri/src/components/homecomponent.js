@@ -12,7 +12,8 @@ class HomeComponent extends Component {
       arr: [],
       currentuser: localStorage.getItem('Currentuser'),
       isloggedIn: localStorage.getItem('isLoggedIn'),
-      flag: true
+      flag: true,
+      count:0
     }
 
 
@@ -21,20 +22,16 @@ class HomeComponent extends Component {
   }
  
   componentWillMount(){
-    if (localStorage.getItem('user_type') === "2" || localStorage.getItem('user_type') === null) {
+    if (localStorage.getItem('user_type') === "2") {
+      var skills=JSON.parse(localStorage.getItem('skills'))
+      this.props.getjob_user(1,null,skills);
+    }
+    else if (localStorage.getItem('user_type') === null) {
       this.props.getjob_user(1);
-      this.setState({
-        arr: this.props.alljobs,
-        jobs: this.props.alljobs
-      })
     }
     else {
       var companyname=JSON.parse(this.state.currentuser)
       this.props.getjob_user(1,companyname);
-      this.setState({
-        arr: this.props.alljobs,
-        jobs: this.props.alljobs
-      })
     }
 
 
@@ -50,33 +47,35 @@ class HomeComponent extends Component {
 
   }
   componentWillReceiveProps(nextProps) {
+
     this.setState({
       arr: nextProps.alljobs,
-      jobs: nextProps.alljobs,
+      jobs: nextProps.alljobs
     })
-  }
+   
+}
  
 
 
   button_page = (e, id) => {
     var current_page = id;
     localStorage.setItem('current_page', id);
+    var skills=JSON.parse(localStorage.getItem('skills'))
     if (localStorage.getItem('Currentuser')) {
       var company_name = localStorage.getItem('Currentuser');
       company_name = company_name.replace(/"/g, "");
     }
     if (localStorage.getItem('user_type') === '2') {
-      this.props.getjob_user(current_page);
+      this.props.getjob_user(current_page,null,skills);
     }
     else {
-      this.props.getjob_user(current_page, company_name);
+      this.props.getjob_user( current_page,company_name,null);
     }
     this.setState({
       arr:this.props.alljobs,
       jobs:this.props.alljobs
     })
   }
-
 
 
 
@@ -102,7 +101,7 @@ class HomeComponent extends Component {
             })}
           </div>
      
-        <Footer></Footer>
+        <Footer> </Footer>
 
 
   

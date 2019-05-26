@@ -30,7 +30,6 @@ export class Showapplied extends Component {
             boxShadow: '0 4px 8px 0 rgba(0, 0, 0, 0.2)',
             marginBottom: '20px'
           }
-        console.log(this.state.check_applied);
         return (
             <div>
                 <HeaderComponent />
