@@ -26,13 +26,13 @@ class Filters extends Component {
         }
         else {
             data = (job_data.filter((element) => {
-                if (this.state.location && element.city !== this.state.location) {
+                if (this.state.location && element.city.includes(this.state.location)!==true) {
                     return false;
                 }
-                if (this.state.designation && element.job_designation !== this.state.designation) {
+                if (this.state.designation && element.job_designation.includes(this.state.designation)!==true) {
                     return false;
                 }
-                if (this.state.company && element.company_name !== this.state.company) {
+                if (this.state.company && element.company_name.includes(this.state.company)!==true) {
                     return false;
                 }
                 return true;
@@ -45,7 +45,6 @@ class Filters extends Component {
 
     render() {
         const divstyle = {
-            // float:"left",
             marginBottom: "20px"
         }
 
@@ -53,7 +52,7 @@ class Filters extends Component {
 
             <section style={divstyle} className="search-sec">
                 <div className="container">
-                    <form onSubmit={this.submitData} method="post" >
+                    <form onSubmit={this.submitData}  method="post" >
                         <div className="row">
                             <div className="col-lg-12">
                                 <div className="row">
